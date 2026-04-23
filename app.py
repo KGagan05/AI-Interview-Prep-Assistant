@@ -4,21 +4,26 @@ from fastapi.templating import Jinja2Templates
 from generator import generate_questions
 
 app = FastAPI()
+
 templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(
+        name="index.html",
+        context={"request": request}
+    )
 
 
 @app.post("/generate", response_class=HTMLResponse)
-async def generate(request: Request, role: str = Form(...)):
-
+def generate(request: Request, role: str = Form(...)):
     output = generate_questions(role)
 
-    return templates.TemplateResponse("index.html", {
-        "request": request,
-        "output": output,
-        "role": role
-    })
+    return templates.TemplateResponse(
+        name="index.html",
+        context={
+            "request": request,
+            "output": output
+        }
+    )

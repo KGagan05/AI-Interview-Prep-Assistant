@@ -3,6 +3,3 @@ uvicorn
 jinja2
 transformers
 torch
-python-multipart
-accelerate
-sentencepiece
