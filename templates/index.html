@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Interview Prep</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🎯 AI Interview Prep Assistant</h1>
+
+    <form action="/generate" method="post">
+        <input type="text" name="role" placeholder="Enter role (e.g., ML Engineer)" required value="{{role}}">
+        <button type="submit">Generate</button>
+    </form>
+
+    {% if output %}
+    <div class="output">
+        <pre>{{ output }}</pre>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
